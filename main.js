@@ -36,7 +36,7 @@ function draw() {
     y += radius * sin(n * -time);
 
     // create the base circle(s)
-    stroke(255, 255 - i * colorOffset, 255 - i * colorOffset);
+    stroke(255, 255, 0, 255 - i * colorOffset);
     noFill();
     ellipse(prevx, prevy, radius * 2);
 
@@ -48,12 +48,13 @@ function draw() {
   wave.unshift(y);
 
   // clear the stroke color and traslate to plot the wave
-  stroke(255);
+  stroke(255, 255, 255);
   translate(200, 0);
 
   // create the line from the wave to the circle(s)
   line(x - 200, y, 0, wave[0]);
 
+  stroke(0, 255, 0);
   // create the sine shape
   beginShape();
   noFill();
