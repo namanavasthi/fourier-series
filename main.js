@@ -5,9 +5,10 @@ let time = 0;
 let wave = [];
 
 function setup() {
-  createCanvas(600, 400);
-  slider = createSlider(1, 100, 1);
+  createCanvas(700, 400);
+  slider = createSlider(1, 100, 5);
   slider.style("width", "50%");
+  slider.style("height", "20px");
 }
 
 function draw() {
