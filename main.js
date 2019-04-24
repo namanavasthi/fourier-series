@@ -1,5 +1,7 @@
 let time = 0;
 
+let wave = [];
+
 function setup() {
   createCanvas(600, 400);
 }
@@ -14,8 +16,10 @@ function draw() {
   noFill();
   ellipse(0, 0, radius * 2);
 
-  let x = radius * cos(time);
-  let y = radius * sin(time);
+  let x = radius * cos(-time);
+  let y = radius * sin(-time);
+
+  wave.unshift(y);
 
   line(0, 0, x, y);
 
@@ -23,5 +27,17 @@ function draw() {
   stroke(255, 0, 0);
   ellipse(x, y, 8);
 
-  time += 0.01;
+  stroke(255);
+  translate(200, 0);
+
+  line(x - 200, y, 0, wave[0]);
+
+  beginShape();
+  noFill();
+  for (let i = 0; i < wave.length; i++) {
+    vertex(i, wave[i]);
+  }
+  endShape();
+
+  time += 0.02;
 }
