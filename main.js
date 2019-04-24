@@ -13,4 +13,15 @@ function draw() {
   stroke(255);
   noFill();
   ellipse(0, 0, radius * 2);
+
+  let x = radius * cos(time);
+  let y = radius * sin(time);
+
+  line(0, 0, x, y);
+
+  fill(255, 0, 0);
+  stroke(255, 0, 0);
+  ellipse(x, y, 8);
+
+  time += 0.01;
 }
