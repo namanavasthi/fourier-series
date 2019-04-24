@@ -10,16 +10,19 @@ function draw() {
   background(0);
   translate(200, 200);
 
-  let radius = 100;
+  let radius = 75;
+
+  let n = 1;
+  // plot the points on circle(s)
+  // ref : https://en.wikipedia.org/wiki/Fourier_series
+  radius = radius * (4 / (n * PI));
+  let x = radius * cos(n * -time);
+  let y = radius * sin(n * -time);
 
   // create the base circle(s)
   stroke(255);
   noFill();
   ellipse(0, 0, radius * 2);
-
-  // plot the points on circle(s)
-  let x = radius * cos(-time);
-  let y = radius * sin(-time);
 
   // save y co-ordinate values in an array
   wave.unshift(y);
@@ -48,4 +51,9 @@ function draw() {
   endShape();
 
   time += 0.02;
+
+  // clean up the wave array
+  if (wave.length > 250) {
+    wave.pop();
+  }
 }
