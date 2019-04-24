@@ -1,3 +1,5 @@
+// ref : https://en.wikipedia.org/wiki/Fourier_series
+
 let time = 0;
 
 let wave = [];
@@ -7,33 +9,37 @@ function setup() {
 }
 
 function draw() {
+  // setup canvas
   background(0);
   translate(200, 200);
 
-  let radius = 75;
+  // (x,y) co-ordinates for the circle
+  let x = 0;
+  let y = 0;
 
-  let n = 1;
-  // plot the points on circle(s)
-  // ref : https://en.wikipedia.org/wiki/Fourier_series
-  radius = radius * (4 / (n * PI));
-  let x = radius * cos(n * -time);
-  let y = radius * sin(n * -time);
+  for (let i = 0; i < 5; i++) {
+    let prevx = x;
+    let prevy = y;
 
-  // create the base circle(s)
-  stroke(255);
-  noFill();
-  ellipse(0, 0, radius * 2);
+    // nth harmonic of the series
+    let n = i * 2 + 1;
+
+    // calculating the nth harmonic co-ordinate value
+    let radius = 75 * (4 / (n * PI));
+    x += radius * cos(n * -time);
+    y += radius * sin(n * -time);
+
+    // create the base circle(s)
+    stroke(255);
+    noFill();
+    ellipse(prevx, prevy, radius * 2);
+
+    // plot the radius
+    line(prevx, prevy, x, y);
+  }
 
   // save y co-ordinate values in an array
   wave.unshift(y);
-
-  // plot the radius
-  line(0, 0, x, y);
-
-  // plot the point(s) on the circle(s)
-  fill(255, 0, 0);
-  stroke(255, 0, 0);
-  ellipse(x, y, 8);
 
   // clear the stroke color and traslate to plot the wave
   stroke(255);
