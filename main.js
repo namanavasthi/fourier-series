@@ -6,6 +6,8 @@ let wave = [];
 
 function setup() {
   createCanvas(600, 400);
+  slider = createSlider(1, 100, 1);
+  slider.style("width", "50%");
 }
 
 function draw() {
@@ -17,7 +19,10 @@ function draw() {
   let x = 0;
   let y = 0;
 
-  for (let i = 0; i < 5; i++) {
+  // color offset value
+  let colorOffset = Math.ceil(255 / slider.value());
+
+  for (let i = 0; i < slider.value(); i++) {
     let prevx = x;
     let prevy = y;
 
@@ -30,7 +35,7 @@ function draw() {
     y += radius * sin(n * -time);
 
     // create the base circle(s)
-    stroke(255);
+    stroke(255, 255 - i * colorOffset, 255 - i * colorOffset);
     noFill();
     ellipse(prevx, prevy, radius * 2);
 
